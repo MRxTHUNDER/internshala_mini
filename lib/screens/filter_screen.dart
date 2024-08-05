@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class FilterScreen extends StatefulWidget {
+  const FilterScreen({super.key});
+
   @override
   _FilterScreenState createState() => _FilterScreenState();
 }
@@ -25,14 +27,14 @@ class _FilterScreenState extends State<FilterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 10, 151, 194),
-        title: Text('Filters', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: const Color.fromARGB(255, 10, 151, 194),
+        title: const Text('Filters', style: TextStyle(fontWeight: FontWeight.bold)),
         actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: CircleAvatar(
               child: IconButton(
-                icon: Icon(Icons.check),
+                icon: const Icon(Icons.check),
                 onPressed: _applyFilters,
               ),
             ),
@@ -47,12 +49,12 @@ class _FilterScreenState extends State<FilterScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               DropdownButtonFormField<String>(
-                decoration: InputDecoration(labelText: 'Profile'),
+                decoration: const InputDecoration(labelText: 'Profile'),
                 value: _selectedProfile,
                 items: ['Software Engineer', 'Data Analyst', 'Designer']
                     .map((profile) => DropdownMenuItem(
-                          child: Text(profile),
                           value: profile,
+                          child: Text(profile),
                         ))
                     .toList(),
                 onChanged: (value) {
@@ -61,14 +63,14 @@ class _FilterScreenState extends State<FilterScreen> {
                   });
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                decoration: InputDecoration(labelText: 'City'),
+                decoration: const InputDecoration(labelText: 'City'),
                 value: _selectedCity,
                 items: ['Delhi', 'Mumbai', 'Bangalore']
                     .map((city) => DropdownMenuItem(
-                          child: Text(city),
                           value: city,
+                          child: Text(city),
                         ))
                     .toList(),
                 onChanged: (value) {
@@ -77,14 +79,14 @@ class _FilterScreenState extends State<FilterScreen> {
                   });
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               DropdownButtonFormField<String>(
-                decoration: InputDecoration(labelText: 'Duration'),
+                decoration: const InputDecoration(labelText: 'Duration'),
                 value: _selectedDuration,
                 items: ['1 Month', '2 Months', '3 Months']
                     .map((duration) => DropdownMenuItem(
-                          child: Text(duration),
                           value: duration,
+                          child: Text(duration),
                         ))
                     .toList(),
                 onChanged: (value) {
@@ -93,10 +95,10 @@ class _FilterScreenState extends State<FilterScreen> {
                   });
                 },
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: _applyFilters,
-                child: Text('Apply Filters'),
+                child: const Text('Apply Filters'),
               ),
             ],
           ),

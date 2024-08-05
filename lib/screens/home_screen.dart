@@ -6,6 +6,8 @@ import 'package:internshala_mini_clone/screens/search_screen.dart';
 import 'package:internshala_mini_clone/screens/filter_screen.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -32,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
     final filters = await Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => FilterScreen(),
+        builder: (context) => const FilterScreen(),
       ),
     );
 
@@ -45,12 +47,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 10, 151, 194),
-        title: Text('Internships', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: const Color.fromARGB(255, 10, 151, 194),
+        title: const Text('Internships', style: TextStyle(fontWeight: FontWeight.bold)),
         actions: [
           InkWell(
             child: IconButton(
-              icon: Icon(Icons.search, size: 30, color: Colors.white,),
+              icon: const Icon(Icons.search, size: 30, color: Colors.white,),
               tooltip: 'Search Icon',
               onPressed: () {
                 showSearch(
@@ -64,13 +66,13 @@ class _HomeScreenState extends State<HomeScreen> {
             color: Colors.transparent,
             child: InkWell(
               child: IconButton(
-                icon: Icon(Icons.filter_alt_sharp, size: 25, color: Colors.white,),
+                icon: const Icon(Icons.filter_alt_sharp, size: 25, color: Colors.white,),
                 onPressed: _openFilterScreen,
               ),
             ),
           ),
           IconButton(
-            icon: Icon(Icons.bookmark, size: 25, color: Colors.white,),
+            icon: const Icon(Icons.bookmark, size: 25, color: Colors.white,),
             onPressed: () {},
           ),
         ],
@@ -79,11 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
         future: futureInternships,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No internships found'));
+            return const Center(child: Text('No internships found'));
           } else {
             return ListView.builder(
               itemCount: snapshot.data!.length,

@@ -6,7 +6,7 @@ import 'package:internshala_mini_clone/screens/home_screen.dart';
 class ApplicationScreen extends StatefulWidget {
   final Internship internship;
 
-  const ApplicationScreen({required this.internship});
+  const ApplicationScreen({super.key, required this.internship});
 
   @override
   _ApplicationScreenState createState() => _ApplicationScreenState();
@@ -27,14 +27,14 @@ class _ApplicationScreenState extends State<ApplicationScreen> {
   }
 
   void _submitApplication(BuildContext context) {
-    // Clear the resume path as the backend functionality is not implemented
+    
     setState(() {
       _resumePath = null;
     });
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Application Submitted')));
+    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Application Submitted')));
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => const HomeScreen()),
       (route) => false,
     );
   }
@@ -43,8 +43,8 @@ class _ApplicationScreenState extends State<ApplicationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 10, 151, 194),
-        title: Text(widget.internship.title , style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: const Color.fromARGB(255, 10, 151, 194),
+        title: Text(widget.internship.title , style: const TextStyle(fontWeight: FontWeight.bold)),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -52,21 +52,21 @@ class _ApplicationScreenState extends State<ApplicationScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Cover Letter ", style: TextStyle(
+              const Text("Cover Letter ", style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold
               ),),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               TextField(
                 controller: _coverLetterController,
                 maxLines: 5,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   labelText: 'Cover Letter',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 20),
-              Text("Location ", style: TextStyle(
+              const SizedBox(height: 20),
+              const Text("Location ", style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold
               ),),
@@ -80,11 +80,11 @@ class _ApplicationScreenState extends State<ApplicationScreen> {
                       });
                     },
                   ),
-                  Text('Are you available to Relocate'),
+                  const Text('Are you available to Relocate'),
                 ],
               ),
-              SizedBox(height: 20),
-              Text("Resume ", style: TextStyle(
+              const SizedBox(height: 20),
+              const Text("Resume ", style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold
               ),),
@@ -92,19 +92,19 @@ class _ApplicationScreenState extends State<ApplicationScreen> {
                 onPressed: _pickResume,
                 child: Text(_resumePath == null ? 'Upload Resume' : 'Resume Uploaded'),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Center(
                 child: ElevatedButton(
               
               style: ElevatedButton.styleFrom(
-                 side: BorderSide(color: Colors.black, width: 1),
+                 side: const BorderSide(color: Colors.black, width: 1),
                  elevation: 20,
-                 minimumSize: Size(150,50),
+                 minimumSize: const Size(150,50),
                  shadowColor: Colors.teal,
                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                ),
               onPressed: () => _submitApplication(context),
-              child: Text("Submit"),
+              child: const Text("Submit"),
             )
                 // child: ElevatedButton(
                 //   onPressed: () => _submitApplication(context),

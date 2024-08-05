@@ -127,9 +127,9 @@ class InternshipDetailsScreen extends StatelessWidget {
               child: ElevatedButton(
               
               style: ElevatedButton.styleFrom(
-                 side: BorderSide(color: Colors.black, width: 1),
+                 side: const BorderSide(color: Colors.black, width: 1),
                  elevation: 20,
-                 minimumSize: Size(150,50),
+                 minimumSize: const Size(150,50),
                  shadowColor: Colors.teal,
                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
                ),
@@ -141,7 +141,7 @@ class InternshipDetailsScreen extends StatelessWidget {
                       ),
                     );
               },
-              child: Text("Apply"),
+              child: const Text("Apply"),
             )
               // child: ElevatedButton(
               //   onPressed: () {
