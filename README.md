@@ -3,12 +3,12 @@ A Flutter app that mimics key features of the Internshala platform.
 
 It includes:
 
-1) Splash Screen: Welcome page with a logo.
-2) Home Screen: Lists internships fetched from an API.
-3) Search: Search internships by title; integrates with filters for profile, city, and duration.
-4) Filter Screen: Apply filters to refine search results.
-5) Internship Details: Detailed view of internship information with 'Apply' functionality.
-6) Application Screen: Submit cover letter, relocation checkbox, and upload resume.
+1) **Splash Screen:** Welcome page with a logo.
+2) **Home Screen:** Lists internships fetched from an API.
+3) **Search:** Search internships by title; integrates with filters for profile, city, and duration.
+4) **Filter Screen:** Apply filters to refine search results.
+5) **Internship Details:** Detailed view of internship information with 'Apply' functionality.
+6) **Application Screen:** Submit cover letter, relocation checkbox, and upload resume.
 
 ## Getting Started
 1) Clone the repository.
@@ -16,3 +16,16 @@ It includes:
 2) Run flutter pub get to install dependencies.
    
 3) Use flutter run to start the app.
+
+## API Integration
+Internships are fetched from a provided API.
+
+## Demonstartion
+
+https://github.com/user-attachments/assets/59f880d1-421c-4f46-a01d-94cffb280a45
+
+
+## Notes
+Only front-end functionality is implemented. Backend services are not included.
+
+The resume upload feature is for UI demonstration only.
