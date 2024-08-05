@@ -21,11 +21,15 @@ class ApiService {
     }
   }
 
-  Future<List<Internship>> fetchInternshipsWithFilters(Map<String, String> filters) async {
-    Uri uri = Uri.parse(apiUrl);
-    final newUri = uri.replace(queryParameters: filters);
+  Future<List<Internship>> fetchInternshipsWithFilters(Map<String, String?> filters) async {
+    final queryParameters = {
+      'profile': filters['profile'],
+      'city': filters['city'],
+      'duration': filters['duration'],
+    }..removeWhere((key, value) => value == null);
 
-    final response = await http.get(newUri);
+    final uri = Uri.parse(apiUrl).replace(queryParameters: queryParameters);
+    final response = await http.get(uri);
 
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
@@ -36,7 +40,7 @@ class ApiService {
       });
       return internships;
     } else {
-      throw Exception('Failed to load internships');
+      throw Exception('Failed to load internships with filters');
     }
   }
 }
