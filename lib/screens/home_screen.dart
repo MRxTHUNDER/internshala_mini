@@ -46,12 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 10, 151, 194),
-        title: Text('Internships', style: TextStyle(fontWeight: FontWeight.bold),),
+        title: Text('Internships', style: TextStyle(fontWeight: FontWeight.bold)),
         actions: [
-          CircleAvatar(
+          InkWell(
             child: IconButton(
-              isSelected: true,
-              icon: Icon(Icons.search, size: 25,),
+              icon: Icon(Icons.search, size: 30, color: Colors.white,),
               tooltip: 'Search Icon',
               onPressed: () {
                 showSearch(
@@ -61,15 +60,19 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: IconButton(
-                    icon: Icon(Icons.filter_alt_sharp, size: 25,),
-                    onPressed: _openFilterScreen,
-                  ),
+          Material(
+            color: Colors.transparent,
+            child: InkWell(
+              child: IconButton(
+                icon: Icon(Icons.filter_alt_sharp, size: 25, color: Colors.white,),
+                onPressed: _openFilterScreen,
+              ),
+            ),
           ),
-          IconButton(icon: Icon(Icons.bookmark), onPressed: () {}),
-          //IconButton(icon: Icon(Icons.chat), onPressed: () {}),
+          IconButton(
+            icon: Icon(Icons.bookmark, size: 25, color: Colors.white,),
+            onPressed: () {},
+          ),
         ],
       ),
       body: FutureBuilder<List<Internship>>(

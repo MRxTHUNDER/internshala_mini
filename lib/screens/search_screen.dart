@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:internshala_mini_clone/models/internship.dart';
+import 'package:internshala_mini_clone/screens/filter_screen.dart';
 import 'package:internshala_mini_clone/services/api_service.dart';
 import 'package:internshala_mini_clone/screens/internship_details_screen.dart';
 
@@ -19,20 +20,40 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   void initState() {
     super.initState();
-    futureInternships = ApiService().fetchInternships(); // Fetch internships as usual
+    futureInternships = ApiService().fetchInternshipsWithFilters(widget.filters ?? {});
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search Results'),
+        backgroundColor: Color.fromARGB(255, 10, 151, 194),
+        title: Text('Search Results', style: TextStyle(fontWeight: FontWeight.bold)),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.filter_alt_sharp),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => FilterScreen(),
+                ),
+              ).then((filters) {
+                if (filters != null) {
+                  setState(() {
+                    futureInternships = ApiService().fetchInternshipsWithFilters(filters);
+                  });
+                }
+              });
+            },
+          ),
+        ],
       ),
       body: FutureBuilder<List<Internship>>(
         future: futureInternships,
@@ -42,37 +63,12 @@ class _SearchScreenState extends State<SearchScreen> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(child: Text('No internships found'));
+            return Center(child: Text('No matching internships found'));
           } else {
-            List<Internship> filteredInternships = snapshot.data!.where((internship) {
-              bool matchesQuery = internship.title.toLowerCase().contains(widget.query.toLowerCase()) ||
-                                   internship.companyName.toLowerCase().contains(widget.query.toLowerCase());
-              bool matchesFilters = true;
-
-              if (widget.filters != null) {
-                final filters = widget.filters!;
-                if (filters['profile'] != null && internship.title != filters['profile']) {
-                  matchesFilters = false;
-                }
-                if (filters['city'] != null && !internship.locationNames.contains(filters['city'])) {
-                  matchesFilters = false;
-                }
-                if (filters['duration'] != null && internship.duration != filters['duration']) {
-                  matchesFilters = false;
-                }
-              }
-
-              return matchesQuery && matchesFilters;
-            }).toList();
-
-            if (filteredInternships.isEmpty) {
-              return Center(child: Text('No matching internships found'));
-            }
-
             return ListView.builder(
-              itemCount: filteredInternships.length,
+              itemCount: snapshot.data!.length,
               itemBuilder: (context, index) {
-                return InternshipCard(internship: filteredInternships[index]);
+                return InternshipCard(internship: snapshot.data![index]);
               },
             );
           }
@@ -91,6 +87,8 @@ class InternshipCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: EdgeInsets.all(10),
+      color: const Color.fromARGB(255, 179, 221, 255),
+      elevation: 10,
       child: Padding(
         padding: EdgeInsets.all(15),
         child: Column(
@@ -111,7 +109,15 @@ class InternshipCard extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: ElevatedButton(
-                onPressed: () {
+              
+              style: ElevatedButton.styleFrom(
+                 side: BorderSide(color: Colors.black, width: 1),
+                 elevation: 20,
+                 minimumSize: Size(150,50),
+                 shadowColor: Colors.teal,
+                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+               ),
+              onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -119,8 +125,9 @@ class InternshipCard extends StatelessWidget {
                     ),
                   );
                 },
-                child: Text('Apply Now'),
-              ),
+              child: Text("Apply Now"),
+            )
+              
             ),
           ],
         ),
