@@ -1,16 +1,18 @@
-# internshala_mini_clone
+# Internshala Mini Clone
+A Flutter app that mimics key features of the Internshala platform. 
 
-A new Flutter project.
+It includes:
+
+1) Splash Screen: Welcome page with a logo.
+2) Home Screen: Lists internships fetched from an API.
+3) Search: Search internships by title; integrates with filters for profile, city, and duration.
+4) Filter Screen: Apply filters to refine search results.
+5) Internship Details: Detailed view of internship information with 'Apply' functionality.
+6) Application Screen: Submit cover letter, relocation checkbox, and upload resume.
 
 ## Getting Started
+1) Clone the repository.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+2) Run flutter pub get to install dependencies.
+   
+3) Use flutter run to start the app.
