@@ -51,7 +51,7 @@ class _FilterScreenState extends State<FilterScreen> {
               DropdownButtonFormField<String>(
                 decoration: const InputDecoration(labelText: 'Profile'),
                 value: _selectedProfile,
-                items: ['Software Engineer', 'Data Analyst', 'Designer']
+                items: ['Adminsration', 'Data Science', 'Designer']
                     .map((profile) => DropdownMenuItem(
                           value: profile,
                           child: Text(profile),
